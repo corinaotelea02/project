@@ -1,0 +1,72 @@
+1. Clasa User
+Clasa User reprezintă un client în aplicație și este folosită pentru a stoca informațiile despre fiecare client: un Id unic, Name și Email. Aceste informații sunt esențiale pentru gestionarea clienților în CRM.
+
+Ce face această clasă?
+
+Proprietăți:
+Id: Un identificator unic pentru fiecare utilizator. Este important pentru a diferenția fiecare client.
+Name: Numele clientului.
+Email: Adresa de email a clientului.
+Metoda ToString: Această metodă este suprascrisă pentru a afișa informațiile într-un format lizibil atunci când un obiect de tip User este adăugat într-un control grafic (de exemplu, ListBox sau ListView).
+De ce este importantă?
+
+Oferă structura de bază pentru gestionarea utilizatorilor în aplicație.
+Se poate extinde cu noi câmpuri (ex. număr de telefon, adresă) pe măsură ce aplicația crește.
+2. Formularul Principal: CRMHome
+Acesta este formularul principal al aplicației. Este creat folosind Windows Forms și conține un meniu cu opțiuni care permit utilizatorului să adauge, să vizualizeze, să editeze și să șteargă clienți.
+
+Ce face acest formular?
+
+Conține un MenuStrip, care este un meniu de tip "bară de meniu" pentru a naviga între diferitele opțiuni ale aplicației. Acesta include:
+Manage Clients: Deschide un formular pentru gestionarea clienților.
+Sales Reports: Deschide un formular pentru vizualizarea rapoartelor de vânzări (acesta poate fi extins ulterior pentru a include statistici).
+Add New Client: Deschide un formular pentru adăugarea unui nou client.
+Remove Client: Deschide un formular pentru ștergerea unui client.
+About: Afișează informații despre aplicație.
+Logout: Permite utilizatorului să se delogheze și să revină la formularul de login.
+Exit: Ieșirea din aplicație.
+De ce este important?
+
+Este punctul de plecare pentru toate funcționalitățile aplicației.
+Organizează navigarea și separă funcționalitățile aplicației.
+3. Formularul pentru Adăugarea unui Client: AddClient
+Acesta este un formular simplu care permite utilizatorilor să adauge clienți noi în aplicație.
+
+Ce face acest formular?
+
+Îi permite utilizatorului să completeze câmpurile pentru Name și Email (în textBoxName și textBoxEmail).
+Când utilizatorul apasă butonul de adăugare (buttonAddClient), se adaugă un nou obiect User în lista globală users, iar aplicația atribuie un ID unic folosind variabila statică nextId care se incrementează după fiecare adăugare.
+Dacă câmpurile nu sunt completate corect, va apărea un mesaj de avertizare.
+De ce este important?
+
+Permite utilizatorilor să adauge date noi în CRM, esențiale pentru administrarea bazei de date de clienți.
+4. Formularul pentru Vizualizarea Clienților: ManageClients
+Acest formular permite vizualizarea tuturor clienților înregistrați în aplicație.
+
+Ce face acest formular?
+
+La încărcarea formularului (ManageClients_Load), se verifică dacă există clienți în lista globală users. Dacă da, aceștia sunt adăugați într-un ListBox (listBoxClients), care va afișa toate obiectele User sub forma unui text citibil.
+Dacă nu există niciun client înregistrat, aplicația va afișa un mesaj care informează utilizatorul că lista este goală.
+De ce este important?
+
+Permite vizualizarea tuturor clienților înregistrați, un aspect fundamental într-o aplicație CRM, pentru a avea o vedere de ansamblu asupra bazei de date de clienți.
+5. Formularul pentru Ștergerea unui Client: RemoveClient
+Acest formular permite utilizatorilor să șteargă un client din aplicație pe baza ID-ului său.
+
+Ce face acest formular?
+
+Permite utilizatorilor să introducă ID-ul clientului pe care doresc să-l șteargă (textBoxClientId).
+La apăsarea butonului de ștergere (buttonRemoveClient), se caută clientul în lista users. Dacă clientul este găsit, acesta este eliminat, iar un mesaj de confirmare este afișat.
+Dacă ID-ul introdus nu corespunde unui client existent, se afișează un mesaj de eroare.
+De ce este important?
+
+Permite gestionarea clienților prin eliminarea acestora din aplicație, un aspect esențial în orice sistem de gestionare a clienților.
+6. Cum se leagă toate aceste funcționalități într-o aplicație?
+Toate aceste formulare sunt interconectate:
+
+CRMHome servește drept punct de acces pentru celelalte formulare (adică le deschide în feronicului de tip Dialog prin ShowDialog()).
+Listele de clienți (în users) sunt stocate static în CRMHome și sunt accesibile de oriunde din aplicație. Astfel, un client adăugat într-un formular (de exemplu, AddClient) va apărea imediat în lista din ManageClients.
+Cum interacționează utilizatorii cu aplicația?
+
+Utilizatorii navighează prin opțiuni din meniul principal pentru a adăuga, vizualiza și șterge clienți.
+Fiecare acțiune de adăugare sau ștergere va modifica lista de clienți, iar modificările se vor reflecta imediat în aplicație.
